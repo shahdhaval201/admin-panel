@@ -18,6 +18,8 @@ import Box from '@mui/material/Box';
 // third party
 import * as Yup from 'yup';
 import { Formik } from 'formik';
+import { useDispatch, useSelector } from 'react-redux';
+import { register } from 'store/authSlice';
 
 // project import
 import AnimateButton from 'components/@extended/AnimateButton';
@@ -30,6 +32,11 @@ import EyeInvisibleOutlined from '@ant-design/icons/EyeInvisibleOutlined';
 // ============================|| JWT - REGISTER ||============================ //
 
 export default function AuthRegister() {
+
+  const dispatch = useDispatch();
+
+  const {isLoading,error} = useSelector((state) => state.auth)
+
   const [level, setLevel] = useState();
   const [showPassword, setShowPassword] = useState(false);
   const handleClickShowPassword = () => {
@@ -45,6 +52,17 @@ export default function AuthRegister() {
     setLevel(strengthColor(temp));
   };
 
+  const handleSubmit = (values, { setSubmitting, setErrors }) => {
+    dispatch(register(values)).unwrap()
+      .then(() => {
+        // Handle successful registration (e.g., redirect to login or home)
+      })
+      .catch((error) => {
+        setErrors({submit: error.messsage || error});  // Display error message
+        setSubmitting(false);  // Stop Formik's submitting state
+      });
+  };
+
   useEffect(() => {
     changePassword('');
   }, []);
@@ -56,7 +74,6 @@ export default function AuthRegister() {
           firstname: '',
           lastname: '',
           email: '',
-          company: '',
           password: '',
           submit: null
         }}
@@ -66,6 +83,7 @@ export default function AuthRegister() {
           email: Yup.string().email('Must be a valid email').max(255).required('Email is required'),
           password: Yup.string().max(255).required('Password is required')
         })}
+        onSubmit={handleSubmit}
       >
         {({ errors, handleBlur, handleChange, handleSubmit, isSubmitting, touched, values }) => (
           <form noValidate onSubmit={handleSubmit}>
@@ -110,27 +128,6 @@ export default function AuthRegister() {
                 {touched.lastname && errors.lastname && (
                   <FormHelperText error id="helper-text-lastname-signup">
                     {errors.lastname}
-                  </FormHelperText>
-                )}
-              </Grid>
-              <Grid item xs={12}>
-                <Stack spacing={1}>
-                  <InputLabel htmlFor="company-signup">Company</InputLabel>
-                  <OutlinedInput
-                    fullWidth
-                    error={Boolean(touched.company && errors.company)}
-                    id="company-signup"
-                    value={values.company}
-                    name="company"
-                    onBlur={handleBlur}
-                    onChange={handleChange}
-                    placeholder="Demo Inc."
-                    inputProps={{}}
-                  />
-                </Stack>
-                {touched.company && errors.company && (
-                  <FormHelperText error id="helper-text-company-signup">
-                    {errors.company}
                   </FormHelperText>
                 )}
               </Grid>
@@ -188,11 +185,18 @@ export default function AuthRegister() {
                     inputProps={{}}
                   />
                 </Stack>
-                {touched.password && errors.password && (
+                {/* {touched.password && errors.password && (
                   <FormHelperText error id="helper-text-password-signup">
                     {errors.password}
                   </FormHelperText>
-                )}
+                )} */}
+                 {error && (
+              <Grid item xs={12}>
+                <FormHelperText error>
+                  {typeof error === 'object' && error.message ? error.message : String(error)}
+                </FormHelperText>
+              </Grid>
+            )}
                 <FormControl fullWidth sx={{ mt: 2 }}>
                   <Grid container spacing={2} alignItems="center">
                     <Grid item>
@@ -225,8 +229,8 @@ export default function AuthRegister() {
               )}
               <Grid item xs={12}>
                 <AnimateButton>
-                  <Button disableElevation disabled={isSubmitting} fullWidth size="large" type="submit" variant="contained" color="primary">
-                    Create Account
+                  <Button disableElevation disabled={isSubmitting || isLoading} fullWidth size="large" type="submit" variant="contained" color="primary">
+                  {isLoading ? 'Registering...' : 'Create Account'}
                   </Button>
                 </AnimateButton>
               </Grid>
