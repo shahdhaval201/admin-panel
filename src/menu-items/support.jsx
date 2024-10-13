@@ -22,6 +22,20 @@ const support = {
       icon: icons.ChromeOutlined
     },
     {
+      id: 'estimation-page',
+      title: 'Estimation Page',
+      type: 'item',
+      url: '/estimation-page',
+      icon: icons.ChromeOutlined
+    },
+    {
+      id: 'language',
+      title: 'Lanaguage Switcher',
+      type: 'item',
+      url: '/language',
+      icon: icons.ChromeOutlined
+    },
+    {
       id: 'documentation',
       title: 'Documentation',
       type: 'item',

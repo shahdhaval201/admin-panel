@@ -13,6 +13,7 @@ import MobileSection from './MobileSection';
 // project import
 import { GithubOutlined } from '@ant-design/icons';
 
+
 // ==============================|| HEADER - CONTENT ||============================== //
 
 export default function HeaderContent() {
@@ -33,7 +34,7 @@ export default function HeaderContent() {
       >
         <GithubOutlined />
       </IconButton>
-
+   
       <Notification />
       {!downLG && <Profile />}
       {downLG && <MobileSection />}

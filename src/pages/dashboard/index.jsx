@@ -11,6 +11,9 @@ import ListItemText from '@mui/material/ListItemText';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
+import { useSelector, useDispatch } from 'react-redux';
+import { useEffect } from 'react';
+import { fetchUsers } from '../../store/authSlice';
 
 // project import
 import MainCard from 'components/MainCard';
@@ -50,6 +53,22 @@ const actionSX = {
 // ==============================|| DASHBOARD - DEFAULT ||============================== //
 
 export default function DashboardDefault() {
+
+  const dispatch = useDispatch();
+    const users = useSelector((state) => state.auth.users); // Access users from Redux state
+    const currentUser = useSelector((state) => state.auth.user);
+    console.log("currentUser--->",currentUser);
+    
+    const userPercentage = (currentUser?.length / users?.length) * 100;
+
+    // Fetch users on component mount
+    useEffect(() => {
+        dispatch(fetchUsers());
+    }, [dispatch]);
+
+  console.log("users--->",users);
+  
+
   return (
     <Grid container rowSpacing={4.5} columnSpacing={2.75}>
       {/* row 1 */}
@@ -60,7 +79,7 @@ export default function DashboardDefault() {
         <AnalyticEcommerce title="Total Page Views" count="4,42,236" percentage={59.3} extra="35,000" />
       </Grid>
       <Grid item xs={12} sm={6} md={4} lg={3}>
-        <AnalyticEcommerce title="Total Users" count="78,250" percentage={70.5} extra="8,900" />
+        <AnalyticEcommerce title="Total Users" count={users?.length} percentage={userPercentage.toFixed(2)} extra="8,900" />
       </Grid>
       <Grid item xs={12} sm={6} md={4} lg={3}>
         <AnalyticEcommerce title="Total Order" count="18,800" percentage={27.4} isLoss color="warning" extra="1,943" />

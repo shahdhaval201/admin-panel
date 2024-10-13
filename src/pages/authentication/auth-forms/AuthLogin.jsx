@@ -16,6 +16,7 @@ import InputLabel from '@mui/material/InputLabel';
 import OutlinedInput from '@mui/material/OutlinedInput';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
+import { useNavigate } from 'react-router-dom';
 
 // third party
 import * as Yup from 'yup';
@@ -35,6 +36,7 @@ import FirebaseSocial from './FirebaseSocial';
 
 export default function AuthLogin({ isDemo = false }) {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const { isLoading, error } = useSelector((state) => state.auth); // Grab loading and error state from Redux
 
   console.log("errormessage--->",error);
@@ -56,6 +58,7 @@ export default function AuthLogin({ isDemo = false }) {
     dispatch(login(values)).unwrap()
       .then(() => {
         // Login successful, you can handle redirection or other logic here
+        navigate('/');
       })
       .catch((error) => {
         console.log("error------------------>",error);

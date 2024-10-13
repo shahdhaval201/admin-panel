@@ -1,10 +1,146 @@
 {
-    "users": [
-      {
-        "id": 1,
-        "email": "test@test.com",
-        "password": "password123"
-      }
-    ]
-  }
-  
+  "users": [
+    {
+      "id": 1,
+      "email": "test@test.com",
+      "password": "password123"
+    },
+    {
+      "id": 2,
+      "email": "shahdhaval201@gmail.com",
+      "password": "password123"
+    }
+  ],
+  "projects": [
+    {
+      "id": 1,
+      "customerName": "ABC Corp",
+      "referenceNumber": "REF123",
+      "projectName": "Website Redesign",
+      "projectNumber": "PRJ1001",
+      "areaLocation": "New York",
+      "address": "123 5th Avenue",
+      "dueDate": "2024-10-01",
+      "contact": "123-456-7890",
+      "manager": "John Doe",
+      "staff": "Jane Smith",
+      "status": "In Progress"
+    },
+    {
+      "customerName": "test",
+      "referenceNumber": "123",
+      "projectName": "test",
+      "projectNumber": "123",
+      "areaLocation": "ahmedabad",
+      "address": "ahmedabad",
+      "dueDate": "2024-10-12",
+      "contact": "90338990337",
+      "manager": "Dhaval",
+      "staff": "Test",
+      "status": "in-progress",
+      "id": 3
+    },
+    {
+      "customerName": "test",
+      "referenceNumber": "123",
+      "projectName": "test",
+      "projectNumber": "123",
+      "areaLocation": "ahmedabad",
+      "address": "ahmedabad",
+      "dueDate": "2024-10-12",
+      "contact": "90338990337",
+      "manager": "Dhaval",
+      "staff": "Test",
+      "status": "in-progress",
+      "id": 4
+    },
+    {
+      "customerName": "test",
+      "referenceNumber": "123",
+      "projectName": "test",
+      "projectNumber": "123",
+      "areaLocation": "ahmedabad",
+      "address": "ahmedabad",
+      "dueDate": "2024-10-12",
+      "contact": "90338990337",
+      "manager": "Dhaval",
+      "staff": "Test",
+      "status": "in-progress",
+      "id": 5
+    },
+    {
+      "customerName": "test",
+      "referenceNumber": "123",
+      "projectName": "test",
+      "projectNumber": "123",
+      "areaLocation": "ahmedabad",
+      "address": "ahmedabad",
+      "dueDate": "2024-10-12",
+      "contact": "90338990337",
+      "manager": "Dhaval",
+      "staff": "Test",
+      "status": "in-progress",
+      "id": 6
+    },
+    {
+      "customerName": "Anita Shah",
+      "referenceNumber": "56567",
+      "projectName": "DRL",
+      "projectNumber": "4545",
+      "areaLocation": "Ahmedabad",
+      "address": "Ahmedabad",
+      "dueDate": "2024-10-13",
+      "contact": "9033890337",
+      "manager": "Dhaval Shah",
+      "staff": "Kaushik",
+      "status": "Completed",
+      "id": 7
+    },
+    {
+      "customerName": "Dhaval Shah",
+      "referenceNumber": "56567",
+      "projectName": "Switch",
+      "projectNumber": "4545",
+      "areaLocation": "Ahmedabad",
+      "address": "Ahmedabad",
+      "dueDate": "2024-10-13",
+      "contact": "9033890337",
+      "manager": "Anita",
+      "staff": "Jay",
+      "status": "In-progress",
+      "id": 8
+    }
+  ],
+  "estimations": [
+    {
+      "id": 1,
+      "title": "Electricity",
+      "items": [
+        {
+          "title": "test",
+          "description": "test",
+          "unit": "200",
+          "quantity": "20",
+          "price": "200",
+          "margin": "20",
+          "total": 4800
+        }
+      ]
+    },
+    {
+      "title": "Food",
+      "items": [
+        {
+          "title": "test",
+          "description": "food",
+          "unit": "200",
+          "quantity": "67",
+          "price": "879",
+          "margin": "88",
+          "total": 110718.84
+        }
+      ],
+      "id": 2
+    }
+  ]
+}
